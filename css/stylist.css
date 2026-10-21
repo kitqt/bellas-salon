@@ -1,0 +1,322 @@
+/* =====================================================================
+   STYLIST PROFILE PAGE STYLES
+   ---------------------------------------------------------------------
+   Used only by stylist-*.html pages, loaded after styles.css. The shared
+   look (colors, fonts, buttons, cards, menu, reviews, hours table) comes
+   from styles.css; this file adds the pieces only profile pages use.
+
+   Mobile first: the base rules are for phones. The @media (min-width)
+   blocks at the bottom add the tablet and desktop layouts.
+   ===================================================================== */
+
+/* ========== Shared bits ========== */
+.container.narrow { width: min(720px, 100% - 32px); }
+
+/* Clear focus ring for keyboard users */
+a:focus-visible,
+button:focus-visible { outline: 3px solid var(--rose); outline-offset: 3px; }
+
+/* Icons inside buttons */
+.btn svg {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Message shown if JavaScript is off or the data file is missing */
+.notice { text-align: center; padding: 96px 16px; }
+
+/* ========== Hero ========== */
+.profile-hero {
+  background: linear-gradient(180deg, var(--blush) 0%, var(--cream) 100%);
+  padding: 20px 0 64px;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  margin-bottom: 28px;
+  padding: .35rem 0;
+  font-size: .9rem;
+  font-weight: 500;
+  color: var(--plum);
+  text-decoration: none;
+}
+.back-link:hover { color: var(--rose); }
+.back-link svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform .2s;
+}
+.back-link:hover svg { transform: translateX(-3px); }
+
+.profile-hero-grid { display: grid; gap: 36px; text-align: center; }
+
+/* Arched photo frame, like a salon mirror */
+.profile-photo {
+  width: min(300px, 78%);
+  margin: 0 auto;
+  aspect-ratio: 4 / 5;
+  border-radius: 999px 999px var(--radius) var(--radius);
+  border: 6px solid #fff;
+  overflow: hidden;
+  background: var(--line);
+  box-shadow: var(--shadow);
+}
+.profile-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+.profile-intro h1 {
+  font-size: clamp(2.5rem, 9vw, 4.25rem);
+  font-weight: 800;
+  color: var(--plum);
+  margin-bottom: .2em;
+}
+.tagline {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.25rem;
+  line-height: 1.4;
+  color: var(--ink);
+  max-width: 30ch;
+  margin-inline: auto;
+}
+
+.quick-facts {
+  list-style: none;
+  padding: 0;
+  margin: 1.75rem auto 0;
+  max-width: 460px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: .75rem;
+}
+.quick-facts li {
+  background: #fff;
+  border-radius: 12px;
+  padding: .8rem .5rem;
+  box-shadow: var(--shadow);
+}
+.quick-facts strong {
+  display: block;
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  line-height: 1.1;
+  color: var(--plum);
+}
+.quick-facts span { display: block; font-size: .72rem; line-height: 1.35; color: var(--muted); margin-top: .25rem; }
+
+.profile-intro .hero-actions { justify-content: center; }
+.profile-intro .hero-actions .btn { flex: 1 1 220px; max-width: 320px; }
+
+/* ========== About Me ========== */
+.about-me p { font-size: 1.05rem; }
+/* A large first letter on the first paragraph */
+.about-me p:first-child::first-letter {
+  float: left;
+  font-family: var(--serif);
+  font-size: 3.6em;
+  line-height: .8;
+  font-weight: 800;
+  color: var(--rose);
+  margin: .08em .12em 0 0;
+}
+
+/* ========== Specialties ========== */
+.specialty-grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 16px;
+}
+.specialty {
+  background: #fff;
+  border-radius: var(--radius);
+  border-top: 3px solid var(--gold);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  transition: transform .25s, box-shadow .25s;
+}
+.specialty:hover { transform: translateY(-4px); box-shadow: 0 16px 36px rgba(59, 31, 43, .14); }
+.specialty h3 { font-size: 1.2rem; color: var(--plum); }
+.specialty p { font-size: .9rem; color: var(--muted); margin: 0; }
+
+/* ========== Services & Pricing ========== */
+#services-menu { grid-template-columns: 1fr; }
+.menu-item .name small.duration {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  margin-top: .15rem;
+}
+.duration svg {
+  width: 13px;
+  height: 13px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+/* ========== Portfolio ========== */
+.tile-btn {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  border-radius: inherit;
+  cursor: zoom-in;
+}
+.tile-btn img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+.tile-btn:hover img,
+.tile-btn:focus-visible img { transform: scale(1.05); }
+/* The tile clips its edges, so draw the focus ring inside it */
+.tile-btn:focus-visible { outline: 3px solid var(--rose); outline-offset: -3px; }
+.tile figcaption { pointer-events: none; }
+
+/* ========== Availability + Certifications ========== */
+.info-grid { display: grid; gap: 24px; }
+.card h2 {
+  font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .75rem;
+}
+.card { padding: 1.75rem 1.5rem; }
+.availability-note { font-size: .9rem; color: var(--muted); margin: 1rem 0 0; }
+
+.cert-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 1.1rem; }
+.cert-list li { display: flex; align-items: flex-start; gap: .85rem; }
+.cert-list strong { display: block; font-weight: 500; line-height: 1.4; }
+.cert-meta { font-size: .85rem; color: var(--muted); }
+
+/* ========== Booking call-to-action ========== */
+.book-band { background: var(--plum); color: #e9d8de; text-align: center; }
+.book-band .eyebrow { color: var(--gold); }
+.book-band h2 { color: #fff; }
+.book-band h2 em { color: #f3c6d3; }
+.book-band p { max-width: 44ch; margin-inline: auto; }
+.book-actions {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  max-width: 320px;
+  margin: 2rem auto 0;
+}
+.book-contact { margin: 1.75rem auto 0; font-size: .95rem; }
+.book-contact a { color: #fff; text-decoration-color: rgba(255, 255, 255, .4); text-underline-offset: 3px; }
+.book-contact span { margin: 0 .4rem; }
+.book-band .socials { justify-content: center; }
+.book-band .socials a { background: rgba(255, 255, 255, .1); }
+.book-band .socials a:hover { background: var(--rose); }
+.book-band :focus-visible { outline-color: var(--gold); }
+
+/* Thin line so the booking band and footer don't blur together */
+footer { border-top: 1px solid rgba(255, 255, 255, .1); }
+
+/* ========== Lightbox (enlarged photo viewer) ========== */
+.lightbox {
+  width: min(92vw, 640px);
+  max-width: none;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  overflow: visible;
+}
+.lightbox::backdrop { background: rgba(30, 14, 22, .95); }
+/* Stop the page behind from scrolling while the viewer is open */
+body:has(.lightbox[open]) { overflow: hidden; }
+
+.lightbox-inner { position: relative; }
+.lightbox-figure { margin: 0; }
+.lightbox-figure img {
+  width: 100%;
+  max-height: 72vh;
+  object-fit: contain;
+  border-radius: 12px;
+  background: var(--line);
+}
+.lightbox-figure figcaption {
+  margin-top: .75rem;
+  text-align: center;
+  color: #fff;
+  font-family: var(--serif);
+  font-size: 1.15rem;
+}
+
+.lightbox button {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .92);
+  color: var(--plum);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: background .2s, transform .2s;
+}
+.lightbox button:hover { background: #fff; transform: scale(1.06); }
+.lightbox button:focus-visible { outline-color: var(--gold); }
+.lightbox button svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.lightbox-close { top: -56px; right: 0; }
+.lightbox-prev,
+.lightbox-next { top: calc(50% - 40px); }
+.lightbox-prev { left: 8px; }
+.lightbox-next { right: 8px; }
+
+/* ========== Tablet and up ========== */
+@media (min-width: 560px) {
+  .specialty-grid { grid-template-columns: repeat(2, 1fr); }
+  .book-actions { flex-direction: row; flex-wrap: wrap; justify-content: center; max-width: none; }
+}
+
+@media (min-width: 760px) {
+  .profile-hero { padding: 28px 0 96px; }
+  .profile-hero-grid {
+    grid-template-columns: 1.15fr .85fr;
+    align-items: center;
+    gap: 64px;
+    text-align: left;
+  }
+  .profile-photo { order: 2; width: 100%; max-width: 400px; }
+  .tagline { margin-inline: 0; }
+  .quick-facts { margin-inline: 0; }
+  .profile-intro .hero-actions { justify-content: flex-start; }
+  .profile-intro .hero-actions .btn { flex: 0 0 auto; }
+
+  #services-menu { grid-template-columns: repeat(2, 1fr); }
+  .card { padding: 2rem; }
+}
+
+/* ========== Desktop ========== */
+@media (min-width: 1000px) {
+  .specialty-grid { grid-template-columns: repeat(4, 1fr); }
+  .info-grid { grid-template-columns: 1fr 1fr; align-items: start; }
+  /* Room for the arrows beside the photo instead of on top of it */
+  .lightbox-prev { left: -64px; }
+  .lightbox-next { right: -64px; }
+}
